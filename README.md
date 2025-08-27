@@ -34,9 +34,6 @@ O ciclo de vida da solicitação segue os estados: RECEBIDO → VALIDADO → PEN
 
 Para este MVP, foi adotada uma **Arquitetura em Camadas** com foco no domínio, inspirada em princípios de Clean Architecture e Domain-Driven Design (DDD). Esta escolha visa equilibrar a clareza didática com boas práticas de engenharia de software.
 
-### Camadas da Aplicação
-
-1. **Camada de Apresentação (API)**
    - Controllers REST
    - DTOs (Data Transfer Objects)
    - Validações de entrada
@@ -62,13 +59,12 @@ Para este MVP, foi adotada uma **Arquitetura em Camadas** com foco no domínio, 
 
 O fluxo principal da aplicação segue o ciclo de vida da solicitação de apólice:
 
+## Testes rápidos da API
+
+Consulte o arquivo [EXECUCAO.md](EXECUCAO.md) para exemplos de comandos CURL e explicações sobre os testes dos endpoints principais.
 1. Cliente envia solicitação via API REST
 2. Sistema persiste a solicitação com status RECEBIDO
 3. Evento SolicitacaoRecebidaEvent é publicado
-4. Consumer processa o evento e consulta API de Fraudes
-5. Regras de validação são aplicadas com base na classificação do cliente
-6. Status é atualizado para VALIDADO ou REJEITADA
-7. Evento correspondente é publicado
 8. Eventos externos de pagamento e subscrição são processados
 9. Status é atualizado para APROVADA ou REJEITADA
 

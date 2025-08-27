@@ -1,0 +1,53 @@
+# Java / Maven / Spring Boot / Docker
+
+# Diretórios de build
+/target/
+
+# Logs
+*.log
+
+# Arquivos de configuração de IDE
+/.idea/
+/.vscode/
+*.iml
+
+# Arquivos temporários
+*.tmp
+*.swp
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Docker
+**/rabbitmq_data/
+**/docker-compose.override.yml
+
+# Arquivos de ambiente
+.env
+
+# Outros arquivos comuns
+*.class
+
+# Excluir arquivos gerados pelo Maven
+.mvn/
+
+# Excluir arquivos de testes gerados
+/test-output/
+
+# Excluir arquivos de relatórios
+/surefire-reports/
+
+# Excluir arquivos de backup
+*~
+
+# Excluir arquivos de build do Eclipse
+/bin/
+
+# Excluir arquivos de build do NetBeans
+/nbproject/private/
+/build/
+/dist/
+
+# Excluir arquivos de build do VS Code
+/.settings/
