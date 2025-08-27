@@ -2,7 +2,7 @@
 
 Este arquivo contém exemplos de comandos CURL para testar os principais endpoints da aplicação, com explicações sobre cada um.
 
----
+
 
 ## Criar uma nova solicitação de apólice
 
@@ -19,7 +19,7 @@ curl -X POST http://localhost:8080/api/solicitacoes \
     "productId": "123",
     "salesChannel": "ONLINE",
     "totalMonthlyPremiumAmount": 100.50,
-    "assistances": ["ASSISTENCIA_1", "ASSISTENCIA_2"],
+
     "coverages": {"COBERTURA_1": 5000.00},
     "insuredAmount": 10000.00
   }'
