@@ -36,8 +36,6 @@ Para este MVP, foi adotada uma **Arquitetura em Camadas** com foco no domínio, 
 
 ### Camadas da Aplicação
 
-![Diagrama de Arquitetura](docs/arquitetura.png)
-
 1. **Camada de Apresentação (API)**
    - Controllers REST
    - DTOs (Data Transfer Objects)
