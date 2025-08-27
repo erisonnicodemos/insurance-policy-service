@@ -1,0 +1,91 @@
+spring:
+  application:
+    name: solicitacao-apolice-mvp
+  
+  # Configuração do banco H2
+  datasource:
+    url: jdbc:h2:mem:solicitacoes;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  
+  # Configuração JPA/Hibernate
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+  
+  # Console H2 para desenvolvimento
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  # Configuração RabbitMQ
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    
+  # Configuração Jackson para JSON
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+# Configuração do servidor
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# Configuração de logs
+logging:
+  level:
+    com.itau.seguros: INFO
+    org.springframework.amqp: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{transactionId:-}] [%X{customerId:-}] %logger{36} - %msg%n"
+
+# Configuração do Actuator para observabilidade
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# Configurações customizadas da aplicação
+app:
+  rabbitmq:
+    exchanges:
+      solicitacao: solicitacao.exchange
+    queues:
+      solicitacao-recebida: solicitacao.recebida.queue
+      solicitacao-validada: solicitacao.validada.queue
+      solicitacao-rejeitada: solicitacao.rejeitada.queue
+      pagamento-confirmado: pagamento.confirmado.queue
+      subscricao-autorizada: subscricao.autorizada.queue
+    routing-keys:
+      solicitacao-recebida: solicitacao.recebida
+      solicitacao-validada: solicitacao.validada
+      solicitacao-rejeitada: solicitacao.rejeitada
+      pagamento-confirmado: pagamento.confirmado
+      subscricao-autorizada: subscricao.autorizada
+

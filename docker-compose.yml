@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # RabbitMQ para mensageria
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"   # Porta AMQP
+      - "15672:15672" # Porta da interface de gerenciamento
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - seguros-network
+
+  # Aplicação Spring Boot
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: solicitacao-apolice-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_PROFILES_ACTIVE: dev
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - seguros-network
+
+volumes:
+  rabbitmq_data:
+
+networks:
+  seguros-network:
+    driver: bridge
+

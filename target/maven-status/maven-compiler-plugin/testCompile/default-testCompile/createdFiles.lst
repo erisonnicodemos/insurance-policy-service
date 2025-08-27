@@ -1,0 +1,5 @@
+com\itau\seguros\solicitacao\api\controller\SolicitacaoControllerTest.class
+com\itau\seguros\solicitacao\domain\model\StatusSolicitacaoTest.class
+com\itau\seguros\solicitacao\application\service\SolicitacaoServiceTest.class
+com\itau\seguros\solicitacao\domain\model\SolicitacaoApoliceTest.class
+com\itau\seguros\solicitacao\domain\rule\RegraValidacaoClienteTest.class
